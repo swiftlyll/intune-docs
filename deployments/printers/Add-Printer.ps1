@@ -27,6 +27,7 @@ $requiredPorts = @{
     portA = ""
     portB = ""
     portC = ""
+    portD = ""
 }
 
 try {
