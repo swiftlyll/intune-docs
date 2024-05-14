@@ -1,5 +1,5 @@
 <#
-.SYNOPSIS
+.DESCRIPTION
     Generic printer mapping script for for Win32 deployment
 .NOTES
     Author: Kennet Morales

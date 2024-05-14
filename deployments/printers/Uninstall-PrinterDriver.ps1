@@ -1,5 +1,5 @@
 <#
-.SYNOPSIS
+.DESCRIPTION
     Generic printer driver removal script for Win32 deployment
 .NOTES
     Author: Kennet Morales
