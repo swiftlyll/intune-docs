@@ -21,7 +21,7 @@ $myPrinterPort = @{
 }
 
 <# Validation #>
-$existingPorts = Get-Printer
+$existingPorts = Get-PrinterPort
 
 $requiredPorts = @{
     portA = ""
@@ -33,7 +33,7 @@ $requiredPorts = @{
 try {
     
     foreach ($printerPort in $existingPorts) {
-        if ($requiredPorts.ContainsValue($existingPorts.Name)) {
+        if ($requiredPorts.ContainsValue($printerPort.Name)) {
             Write-Output "[ERROR] Printer port $($printerPort.Name) is currently in use"
             $requiredPortExists = $true
         }
