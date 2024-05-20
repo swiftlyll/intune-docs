@@ -4,6 +4,8 @@
 .NOTES
     Author: Kennet Morales
     Date: 05/06/2024
+    Last Modified: 05/20/2024
+    GitHub: https://github.com/swiftlyll
 #>
 
 <# Printers #>
@@ -18,6 +20,13 @@ $myPrinterPort = @{
     Name = ""
     PrinterHostAddress = ""
     ErrorAction = "Stop"
+}
+
+<# Optional: Printer Configuration #>
+$printerConfig = @{
+    Color = $false
+    DuplexingMode = "OneSided"
+    ErrorAction = "SilentlyContinue"
 }
 
 <# Check for Used Ports #>
@@ -38,7 +47,7 @@ try {
             $requiredPortExists = $true
         }
     }
-    
+
     if ($requiredPortExists) {
         Write-Output "[INFO] Exiting"
         Remove-Variable -Name "requiredPortExists"
@@ -63,6 +72,9 @@ try {
     Write-Output "[INFO] Adding printer $($myPrinter.Name)"
     Add-Printer @myPrinter
     Write-Output "[INFO] Successfully added $($myPrinter.Name)"
+
+    # Optional: B&W and Duplex Settings
+    Set-PrintConfiguration -PrinterName $myPrinter.Name @printerConfig
     Exit 0
 
 }
