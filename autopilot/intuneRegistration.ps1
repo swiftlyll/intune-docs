@@ -4,28 +4,22 @@
 .NOTES
     Author: Kennet Morales
     Date: March 14, 2024
-    Modified: May 14, 2024
     GitHub: https://github.com/swiftlyll
+    Source: 
 #>
 
 # TLS 1.2 for Data-in-Transit Encryption
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
-# Setup for Autopilot Script
-Write-Host -ForegroundColor Yellow "[INFO] Installing Autopilot script" | Write-Output
+# install autopilot script
+Write-Output "[INFO] Installing Autopilot script"
 Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass # Prevents errors/blocking of scripts
 Install-Script -Name Get-WindowsAutopilotInfo -Force # Downloads script
 Set-ExecutionPolicy -Scope Process -ExecutionPolicy RemoteSigned # Reverts changes
-Write-Host -ForegroundColor Yellow "[INFO] Installation successful" | Write-Output
+Write-Output "[INFO] Installation successful"
 
-# Collect Hash
-try {
-    Write-Host -ForegroundColor Yellow "[INFO] Enrolling, please log-in with admin" | Write-Output
-    Get-WindowsAutopilotInfo -Online -ErrorAction Stop
-    Write-Host -ForegroundColor Yellow "[INFO] Sucessfully enrolled device" | Write-Output
-    Exit 0
-}
-catch {
-    Write-Host -ForegroundColor Red "[ERROR] Enrollment failed" | Write-Output
-    Exit 1
-}
+# enroll
+Write-Output "[INFO] Please log-in with admin" 
+Get-WindowsAutopilotInfo -Online -ErrorAction Stop
+Write-Output "[INFO] Sucessfully enrolled device" 
+Exit 0
